@@ -1,5 +1,4 @@
 const passwordBox = document.getElementById("password");
-const copyMessage = document.getElementById("copyMessage");
 
 const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const lowerCase = "abcdefghijklmnopqrstuvwxyz";
@@ -7,8 +6,16 @@ const number = "0123456789";
 const symbols = "@#$%^&*()+-_=?<>/|{}[]";
 const similarChars = "iI1loO0";
 
+const lengthDisplay = document.getElementById("lengthDisplay");
+const lengthSlider = document.getElementById("lengthSlider");
+
+// Update the password length display when the slider is adjusted
+lengthSlider.oninput = function () {
+  lengthDisplay.textContent = this.value;
+};
+
 function createPassword() {
-  const length = document.getElementById("length").value;
+  const length = lengthSlider.value;
   const includeSymbols = document.getElementById("includeSymbols").checked;
   const includeNumbers = document.getElementById("includeNumbers").checked;
   const includeLowercase = document.getElementById("includeLowercase").checked;
@@ -29,6 +36,13 @@ function createPassword() {
       .split("")
       .filter((char) => !similarChars.includes(char))
       .join("");
+  }
+
+  // Check if availableChars is empty or length is 0 or less
+  if (availableChars.length < 1) {
+    passwordBox.value =
+      "Unable to create a password with 1 or fewer available characters";
+    return;
   }
 
   let password = "";
@@ -54,11 +68,15 @@ function copyPassword() {
   passwordBox.select();
   document.execCommand("copy");
 
-  // Show the "Copied!" message
-  copyMessage.style.display = "block";
+  // Show "Copied!" notification
+  const copiedNotification = document.createElement("div");
+  copiedNotification.innerText = "Copied!";
+  copiedNotification.classList.add("copied-notification");
 
-  // Hide the message after 2 seconds
+  document.body.appendChild(copiedNotification);
+
+  // Remove the notification after 1.5 seconds
   setTimeout(() => {
-    copyMessage.style.display = "none";
-  }, 2000);
+    copiedNotification.remove();
+  }, 1500);
 }

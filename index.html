@@ -20,12 +20,18 @@
         <img src="images/copy.png" onclick="copyPassword()" alt="copy image" />
       </div>
 
-      <!-- Notification message -->
-      <div id="copyMessage" class="copy-message">Copied!</div>
-
       <div class="settings">
-        <label for="length">Password Length:</label>
-        <input type="number" id="length" value="16" min="4" max="30" />
+        <label for="length"
+          >Password Length: <span id="lengthDisplay">16</span></label
+        >
+        <input
+          type="range"
+          id="lengthSlider"
+          min="4"
+          max="30"
+          value="16"
+          step="1"
+        />
 
         <div class="checkboxes">
           <label
@@ -56,7 +62,7 @@
       </div>
 
       <button onclick="createPassword()">
-        <img src="images/generate.png" alt="generate icon" />Generate Password
+        <img src="images/generate.png" alt="generate icon " />Generate Password
       </button>
     </div>
 
