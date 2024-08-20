@@ -15,9 +15,9 @@ A Random Password Generator web application built using HTML, CSS, and JavaScrip
 
 ## Technologies Used
 
-- **HTML5:** For structuring the content.
-- **CSS3:** For styling the application.
-- **JavaScript (ES6+):** For functionality and interactivity.
+- **HTML:** For structuring the content.
+- **CSS :** For styling the application.
+- **JavaScript :** For functionality and interactivity.
 
 ## How to Use
 
